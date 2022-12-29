@@ -15,7 +15,7 @@
   git clone https://github.com/hyunseokjoo/gcp-data-engineering.git
   ```
 
-- anaconda, docker & docker-compose. 설치하기
+- anaconda, docker & docker-compose 설치하기
 
   ```bash
   bash ~/gcp-data-engineering/scripts/vm_setup.sh && \
@@ -23,7 +23,7 @@
   ```
 
 - 환경 변수 설정 -
-  - the Kafka VM 의 External IP 설정
+  - Kafka 외부 주소 설정
     ```bash
     export KAFKA_ADDRESS={your_compute_instance_external_ip}
     ```
@@ -36,7 +36,7 @@
   docker-compose up -d 
   ```
 
-- Kafka Control Center should port `9021` 로 접속 및 테스트 진행
+- Kafka Control Center는 port `9021` 로 잘 연결 되었는지 접속 및 테스트 진행
 - Kafka에 eventsim 데이터를 브로커에 보냅니다.
   ```bash
   bash ~/gcp-data-engineering/scripts/eventsim_startup.sh
