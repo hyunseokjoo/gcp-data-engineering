@@ -5,7 +5,7 @@ GCP Data 분석 플랫폼을 구축해보는 Toy Project입니다.
 ![Architecture](./images/architecture.png)
 
 - 이번 Toy Project에서는 아래와 같은 아키텍쳐를 가집니다. 위의 환경을 구축해보는 프로젝트 입니다.
-    #### 구축과정
+    ### 구축과정
         1. ![kafka 구축](./kafka/README.md)
         2. 
         
