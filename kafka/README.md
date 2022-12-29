@@ -1,21 +1,22 @@
 ## Setup Kafka VM
 
-먼저 GCP 환경에서 외부에서 접근 가능한 Compute Instance 하나가 존재 해야 합니다. 만든 하나의 Compute Instance에서 두개의 도커 Container를 올립니다. 하나는 - Eventsim, 하나는 - Kafka를 올릴 예정입니다.
+먼저 GCP 환경에서 외부에서 접근 가능한 Compute Instance 하나가 존재 해야 합니다. 만든 하나의 Compute Instance에서 두개의 도커 Container를 올립니다. 하나는 - Eventsim(fake data 생성 모듈), 하나는 - Kafka를 올릴 예정입니다.
 
-- SSH connection 접속 테스트
+- SSH connection 접속
   ```bash
   ssh {your_id}@{your_compute_instance_external_ip}
   ```
 
 - Kafka 클러스터 올리기
   ```bash
-  git clone https://github.com/hyunseokjoo/gcp-data-engineering.git && \
+  cd ~ && \ 
+  git clone https://github.com/hyunseokjoo/gcp-data-engineering.git
   ```
 
 - anaconda, docker & docker-compose. 설치하기
 
   ```bash
-  bash ~/gcp-data-engineering/kafka/vm_setup.sh && \
+  bash ~/gcp-data-engineering/scripts/vm_setup.sh && \
   exec newgrp docker
   ```
 
@@ -30,7 +31,7 @@
   ```bash
   cd ~/gcp-data-engineering/kafka && \
   docker-compose build && \
-  docker-compose up 
+  docker-compose up -d
   ```
 
 - Kafka Control Center should port `9021` 로 접속 및 테스트 진행
