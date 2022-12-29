@@ -1,3 +1,6 @@
+# Note
+아래 내용은 프로젝트와 상관이 없습니다. Kafka폴더로 먼저 이동해주세요.
+
 ## Eventsim
 
 Eventsim은 event data를 generate하는 project입니다.(picture something like Spotify); 진짜 데이터 처럼 보이지만 모두 가짜 입니다. repo는 [여기서](https://github.com/Interana/eventsim) 확인 할 수 있습니다. docker image는 [viirya's clone](https://github.com/viirya/eventsim) 에서 확인 가능합니다.
