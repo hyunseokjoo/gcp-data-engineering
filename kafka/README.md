@@ -3,6 +3,7 @@
 먼저 GCP 환경에서 외부에서 접근 가능한 Compute Instance 하나가 존재 해야 합니다. 만든 하나의 Compute Instance에서 두개의 도커 Container를 올립니다. 하나는 - Eventsim(fake data 생성 모듈), 하나는 - Kafka를 올릴 예정입니다.
 
 - Compute Instance에 SSH connection 접속
+  외부 접속을 하여도 좋고, Google Cloud에서 SSH 웹페이지 접속을 하여도 상관없습니다.
   ```bash
   ssh {your_id}@{your_compute_instance_external_ip}
   ```
@@ -22,8 +23,9 @@
   exec newgrp docker
   ```
 
-- 환경 변수 설정 -
+- 환경 변수 설정
   - Kafka 외부 주소 설정
+    EventSim과 다른 소스에서 사용하므로 꼭 넣어주세요.
     ```bash
     export KAFKA_ADDRESS={your_compute_instance_external_ip}
     ```
@@ -37,6 +39,9 @@
   ```
 
 - Kafka Control Center는 port `9021` 로 잘 연결 되었는지 접속 및 테스트 진행
+  ```bash
+  http://{your_compute_instance_external_ip}:9021
+  ```
 - Kafka에 eventsim 데이터를 브로커에 보냅니다.
   ```bash
   bash ~/gcp-data-engineering/scripts/eventsim_startup.sh
