@@ -2,13 +2,15 @@
 
 먼저 GCP 환경에서 외부에서 접근 가능한 Compute Instance 하나가 존재 해야 합니다. 만든 하나의 Compute Instance에서 두개의 도커 Container를 올립니다. 하나는 - Eventsim(fake data 생성 모듈), 하나는 - Kafka를 올릴 예정입니다.
 
-- SSH connection 접속
+- Compute Instance에 SSH connection 접속
   ```bash
   ssh {your_id}@{your_compute_instance_external_ip}
   ```
 
 - Kafka 클러스터 올리기
   ```bash
+  sudo apt update && \ 
+  sudo apt install -y git && \ 
   cd ~ && \ 
   git clone https://github.com/hyunseokjoo/gcp-data-engineering.git
   ```
@@ -31,7 +33,7 @@
   ```bash
   cd ~/gcp-data-engineering/kafka && \
   docker-compose build && \
-  docker-compose up -d
+  docker-compose up -d 
   ```
 
 - Kafka Control Center should port `9021` 로 접속 및 테스트 진행
@@ -45,7 +47,7 @@
   ```bash
   docker logs --follow million_events
   ```
-  몇 분안에 메세지가 들어오기 시작합니다. 아래 내 게의 토픽이 보일 것입니다.
+  몇 분안에 메세지가 들어오기 시작합니다. 아래 내 개의 토픽이 보일 것입니다.
 
   - listen_events
   - page_view_events
