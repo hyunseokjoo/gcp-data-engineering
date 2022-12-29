@@ -2,7 +2,7 @@
 
 - Master node에 ssh 접속합니다.
   ```bash
-  ssh streamify-spark
+  ssh {your_master_node}
   ```
 
 - git의 내용을 받아줍니다.
