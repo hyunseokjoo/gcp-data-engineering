@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Run using the below command
-# bash vm_setup.sh
+# VM에 anaconda와 docker 환경 구축 예제 입니다.
 
 echo "Downloading anaconda..."
 wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
@@ -17,6 +16,7 @@ eval "$($HOME/anaconda/bin/conda shell.bash hook)"
 
 echo "Running conda init..."
 conda init
+
 # Using -y flag to auto-approve
 echo "Running conda update..."
 conda update -y conda
