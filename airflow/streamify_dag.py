@@ -1,4 +1,5 @@
 import os
+external_listen_events
 from datetime import datetime
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -10,7 +11,7 @@ EVENTS = ['listen_events', 'page_view_events', 'auth_events']
 
 GCP_PROJECT_ID = {your_project_id}
 GCP_GCS_BUCKET = {your_bucket_id}
-BIGQUERY_DATASET = os.environ.get('BIGQUERY_DATASET', 'streamify_stg')
+BIGQUERY_DATASET = 'staging'
 
 EXECUTION_MONTH = '{{ logical_date.strftime("%-m") }}'
 EXECUTION_DAY = '{{ logical_date.strftime("%-d") }}'
@@ -35,7 +36,7 @@ with DAG(
     default_args = default_args,
     description = f'Hourly data pipeline to generate dims and facts for streamify',
     schedule_interval="5 * * * *", # 매 시간 : 5분 마다 dag실행
-    start_date=datetime(2022,12,30,18),
+    start_date=datetime(2022,12,31,9),
     catchup=False,
     max_active_runs=1,
     user_defined_macros=MACRO_VARS,
@@ -46,8 +47,8 @@ with DAG(
 
     for event in EVENTS:
         
-        staging_table_name = event
-        insert_query = f"{{% include 'sql/{event}.sql' %}}" #extra {} for f-strings escape
+        staging_table_name = event  # Staging Event 
+        merge_query = f'merge_{event}'
         external_table_name = f'{staging_table_name}_{EXECUTION_DATETIME_STR}'
         events_data_path = f'{staging_table_name}/month={EXECUTION_MONTH}/day={EXECUTION_DAY}/hour={EXECUTION_HOUR}'
         events_schema = schema[event]
@@ -58,14 +59,8 @@ with DAG(
                                                            external_table_name, 
                                                            GCP_GCS_BUCKET, 
                                                            events_data_path)
-
-        create_empty_table_task = create_empty_table(event,
-                                                     GCP_PROJECT_ID,
-                                                     BIGQUERY_DATASET,
-                                                     staging_table_name,
-                                                     events_schema)
                                                 
-        execute_insert_query_task = insert_job(event,
+        execute_merge_query_task = insert_job(event,
                                                insert_query,
                                                BIGQUERY_DATASET,
                                                GCP_PROJECT_ID)
@@ -77,8 +72,5 @@ with DAG(
                     
         
         create_external_table_task >> \
-        create_empty_table_task >> \
         execute_insert_query_task >> \
-        delete_external_table_task >> \
-        initate_dbt_task >> \
-        execute_dbt_task
+        delete_external_table_task >> 
