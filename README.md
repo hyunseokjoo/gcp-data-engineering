@@ -19,6 +19,7 @@ GCP Data 분석 플랫폼을 구축해보는 Toy Project입니다.
 
 
 #### 툴 및 기술
+- Stream Data - [**Eventsim**](https://github.com/Interana/eventsim)
 - Cloud - [**Google Cloud Platform**](https://cloud.google.com)
 - Containerization - [**Docker**](https://www.docker.com), [**Docker Compose**](https://docs.docker.com/compose/)
 - Stream Processing - [**Kafka**](https://kafka.apache.org), [**Spark Streaming**](https://spark.apache.org/docs/latest/streaming-programming-guide.html)

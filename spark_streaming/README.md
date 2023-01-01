@@ -1,6 +1,6 @@
 먼저 [Kafka 구축](../kafka/README.md) 이 끝난 다음 진행해 주세요. 구축이 되었다면, DataProc에서 Spark Cluster를 만들어 주세요. Kafka broker에 연결하여 Spark Streaming을 이용하여 GCS에 적재 합니다.
 
-- Master node에 ssh 접속합니다.
+- Master node에 SSH connection 접속 외부 접속을 하여도 좋고, Google Cloud에서 SSH 웹페이지 접속을 하여도 상관없습니다.
   ```bash
   ssh {your_master_node}
   ```
