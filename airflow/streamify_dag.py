@@ -48,7 +48,6 @@ with DAG(
     user_defined_macros=MACRO_VARS,
     tags=['streamify']
 ) as dag:
-    
 
     for event in EVENTS:
         
