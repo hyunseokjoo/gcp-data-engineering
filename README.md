@@ -8,6 +8,8 @@ GCP Data 분석 플랫폼을 구축해보는 Toy Project입니다.
     ### 구축과정
     1. [Kafka 구축](./kafka/README.md)
     2. [Spark Streaming 구축](./spark_streaming/README.md)
+    3. [Bigquery 구축](./bigquery/README.md)
+    4. [Airflow 구축](./airflow/README.md)
         
 
 #### Scenario
@@ -16,6 +18,8 @@ GCP Data 분석 플랫폼을 구축해보는 Toy Project입니다.
     3. Composer(Airflow)를 이용하여 및 GCS to Bigquery 데이터 적재 
     4. DataStudio와 연결하여 데이터 시각화
 
+#### Result
+![Architecture](./images/bi.png)
 
 
 #### 툴 및 기술
